@@ -23,50 +23,58 @@
 ### Ordered 리스트
 ```
 1. 아이템 1
-2. 아이템 2
-3. 아이템 3
-   3-a. 아이템 3a
-   3-b. 아이템 3b
+1. 아이템 2
+1. 아이템 3
+    1. 아이템 3a
+    1. 아이템 3b
 ```
 1. 아이템 1
-2. 아이템 2
-3. 아이템 3
-   3-a. 아이템 3a
-   3-b. 아이템 3b
+1. 아이템 2
+1. 아이템 3
+    1. 아이템 3a
+    1. 아이템 3b
 
 ## 강조
 ```
 *이 텍스트는 기울어집니다*
+
 _이 텍스트도 기울어집니다_
 
 **이 텍스트는 볼드처리 됩니다**
+
 __이 텍스트도 볼드처리 됩니다__
 
 **__혼용하여 사용 가능합니다__**
 ```
 *이 텍스트는 기울어집니다*
+
 _이 텍스트도 기울어집니다_
 
 **이 텍스트는 볼드처리 됩니다**
+
 __이 텍스트도 볼드처리 됩니다__
 
 **_결합하여 사용 가능합니다_**
 
 ## 링크
 ```
-http://github.com - 자동으로 링크됩니다
+http://github.com  // 자동으로 링크됨
+
 [Github](http://github.com)
 ```
 http://github.com
+
 [Github](http://github.com)
 
 ## 이미지
 ```
-![Alt Text](url) <- 포맷
+![Alt Text](url)  // 기본 포맷
 ![꽃게](rustacean-flat-happy.png)
+
+<img src="rustacean-flat-happy.png" width="200">  // 크기를 조정하고 싶으면 html 태그를 사용할 수 있음
 ```
-![꽃게](rustacean-flat-happy.png | width=200)
 <img src="rustacean-flat-happy.png" width="200">
+
 ## 인용구
 ```
 > 무언가를 시작하는 방법은 말하는 것을 멈추고, 행동하는 것이다.
