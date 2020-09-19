@@ -44,7 +44,7 @@ _이 텍스트도 기울어집니다_
 
 __이 텍스트도 볼드처리 됩니다__
 
-**__혼용하여 사용 가능합니다__**
+**__결합하여 사용 가능합니다__**
 ```
 *이 텍스트는 기울어집니다*
 
@@ -71,7 +71,7 @@ http://github.com
 ![Alt Text](url)  // 기본 포맷
 ![꽃게](rustacean-flat-happy.png)
 
-<img src="rustacean-flat-happy.png" width="200">  // 크기를 조정하고 싶으면 html 태그를 사용할 수 있음
+<img src="rustacean-flat-happy.png" width="200">  // 크기를 조정하고 싶으면 markdown 대신에 html 태그를 사용할 수 있음
 ```
 <img src="rustacean-flat-happy.png" width="200">
 
