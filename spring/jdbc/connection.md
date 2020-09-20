@@ -1,10 +1,10 @@
-# JDBC DB 연결
+# JDBC DB Connection
 
-## JDBC DB 연결 과정
+## JDBC DB Connection 과정
   1. [Import JDBC Packages](#Import-JDBC-Packages)
-  2. [Register JDBC Driver](Register-JDBC-Driver)
-  3. [Database URL Formulation](Database-URL-Formulation)
-  4. [Create Connection Object](Create-Connection-Object)
+  2. [Register JDBC Driver](#Register-JDBC-Driver)
+  3. [Database URL Formulation](#Database-URL-Formulation)
+  4. [Create Connection Object](#Create-Connection-Object)
 
 ---
 ## Import JDBC Packages
@@ -112,7 +112,7 @@ info.put( "password", "password" );
 Connection conn = DriverManager.getConnection(URL, info);
 ```
 
-## JDBC 연결 종료하기
+## JDBC Connection 종료하기
 * JDBC 사용이 끝나면 명시적으로 모든 연결을 `close()` 해주어야 한다.
 * 연결을 종료하지 않더라도 자바의 GC가 자동으로 stale된 오브젝트를 처리하지만, 보다 통제된 자원 관리를 위해 직접 처리해주는 것이 더 좋다.
 * `finally` 블록 안에 `conn.close();` 를 넣어 실행시켜주는 방법을 주로 사용한다.
