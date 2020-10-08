@@ -36,3 +36,5 @@
 * 코드로 배우는 스프링 웹 프로젝트 개정판 (구멍가게 코딩단 저, 남가람북스)
 * https://en.wikipedia.org/wiki/Dependency_injection
 * https://stackoverflow.com/questions/7451325/spring-mvc-what-are-a-context-and-namespace
+
+![equation](http://www.sciweavers.org/tex2img.php?eq=1%2Bsin%28mc%5E2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
