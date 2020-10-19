@@ -8,6 +8,6 @@
   * [JDBC DB Connection](spring/jdbc/connection.md)
 
 ## Codeforces
-* [문제 풀이](codeforces/codeforces.md)
+* [문제 풀이](codeforces/README.md)
 ## ETC
 * [Markdown 문법](etc/md.md)
