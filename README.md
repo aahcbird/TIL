@@ -12,6 +12,9 @@
 * [Pandas](python/pandas.md)
 * [PyQt](python/pyqt.md)
 
+## Linux
+* [Linux](linux/linux.md)
+
 ## Codeforces
 * [1600-2100](codeforces/1600-2100.md)
 
