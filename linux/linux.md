@@ -19,6 +19,7 @@
 * 프로세스 관리
 * 사용자 관리
 <br>
+
 * Linux/Unix 역사
 * Linux 서버 설치
 * 파일 편집
@@ -50,7 +51,7 @@ root@:~#
   * `exit`
 
 ## Linux File System
-|Linux| |Windows|
+|Linux|설명|Windows|
 |:-|:-|:-|
 |mnt||Drive(C:\\, D:\\)|
 |bin| |System32|
