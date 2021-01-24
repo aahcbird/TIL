@@ -1,5 +1,9 @@
 # Today I learned
 ## Java
+#### JSP & Servlet
+* [백엔드 기초](jspsvlt/backend.md)
+* [JSP](jspsvlt/jsp.md)
+* [Servlet](jspsvlt/servlet.md)
 #### Spring
 * IoC
   * [DI](spring/ioc/di.md)
