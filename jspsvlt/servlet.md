@@ -32,7 +32,7 @@ public class Nana extends HttpServlet {
 ```
 * 위 코드에서 사용자가 `http://localhost/hello` 주소로 요청을 보내게 되면, WAS가 매핑해 Nana.class를 찾아 처리한다.
 
-#### Servlet 코드에서의 출력이 서버가 아닌 클라이언트 쪽에서 보여지도록 하려면?
+### Servlet 코드에서의 출력이 서버가 아닌 클라이언트 쪽에서 보여지도록 하려면?
 ```java
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -53,4 +53,4 @@ public class Nana extends HttpServlet {
 ```
 * 위와 같이 `OutputStream`을 생략하고 문자 전용 스트림인 `PrintWriter`를 사용하는 방법도 있다.
 * `PrintWriter`는 `PrintStream`에 비해 더 많은 문자를 지원한다.
-  * 하지만 `System.out`이 여전히 `PrintStream`이기 때문에 `PrintStream`도 여전히 사용된다.
+  * 하지만 `System.out`이 `PrintStream`이기 때문에 `PrintStream`도 여전히 사용된다.

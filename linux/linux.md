@@ -152,3 +152,34 @@ root@:~#
 ## 파일 정보 확인
 * `file Hello.java`
   * `Hello.java: C++ Source, ASCII text`
+
+## 그 외 유용한 명령어들
+|명령어|설명|예시|
+|:-|:-|:-|
+|clear|콘솔 지우기| |
+|history|명령어 히스토리|`!96` : 96번째 명령어 실행|
+|>|Redirection|`echo "hello" > test`<br> `hitory > test`|
+|>>|Redirection + 뒤에 추가 |`echo "Okay" >> test"`|
+|\||받아서 오른쪽에서 처리|`cat test | grep He`|
+|less|한 페이지씩 확인하기|`ls -l | less`|
+|sort|정렬|`history | sort`<br>`-r` 옵션으로 역정렬 가능|
+|;|명령어 연속 실행|`touch test1; echo "okay~" >> test1; cat test1`|
+
+## 파일 압축
+### tar(Tape ARchive) + zip
+|옵션|설명|
+|:-|:-|
+|-f|파일 이름을 지정|
+|-c|파일을 tar로 묶음|
+|-x|tar 압축을 풂|
+|-v|내용을 자세히 출력|
+|-z|gzip으로 압축하거나 해제함|
+|-t|목록 출력|
+|-p|파일 권한을 저장|
+|-C|경로를 지정|
+* 압축 하기
+  * `tar -cf name.tar a b c`
+  * `tar -zcf name.tar.gz a b c`
+* 압축 풀기
+  * `tar -xvf name.tar`
+  * `tar -zxvf name.tar.gz`
