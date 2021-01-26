@@ -72,10 +72,15 @@ root@:~#
 |cd|디렉토리를 변경| |
 |man|메뉴얼 파일 열기|`man ls`|
 
-* `ls -l` 명령어로 디렉토리 내 파일 목록 나열 시 맨 앞에 있는 정보
-  * ex) `drwxrwxr-x`
-  * 맨 앞 d는 해당 파일이  directory임을 나타냄. (혹은 파일명이 파란색인 것을 보고 확인 가능)
-  * 마찬가지로 맨 앞이 l이면 링크 파일.
+* `ls -l` 와 같이 `-l`옵션을 enable하면 long listing format으로 출력이 가능하다.
+  * ex) `-rwxrw-r-- 1 soon soongroup 3 Feb 26 07:08 file`
+  * `-rwxrw-r--`
+    * 맨 앞의 알파벳은 파일 타입을 나타낸다.
+    * 이어지는 rwx 3묶음은 각각 owner, group, other(그 외)에 대한 read, write, execute 권한을 의미한다.
+  * `1` = 해당 파일에 대한 Hard Link의 수
+  * `soon` = 파일의 소유자
+  * `soongroup` = 파일이 속한 그룹
+  * `3` = 파일 크기
 * `ls`명령어로 비슷한 파일 검색
   * `ls Hello[12].java` = `Hello1.java`와 `Hello2.java`만 검색 됨.
 * 쉘에서의 위치
@@ -196,8 +201,25 @@ root@:~#
 
 ## 리눅스 환경 변수 설정법
 * 리눅스의 환경 변수 설정은 `$PATH` 경로 안에 링크 파일을 생성하여 실제 사용하고자 하는 경로를 참조하도록 하는 방식으로 설정이 가능하다.
-* `$PATH`의 경로 중 하나인 `/home/[user]/bin` 디렉토리에서 다음과 같은 명령어를 통해 링크파일을 생성한다.
+* `$PATH`의 경로 중 하나인 `/home/(user)/bin` 디렉토리에서 다음과 같은 명령어를 통해 링크파일을 생성한다.
 * `ln -s ~/download/jdk1.8.0_161/bin/java java`
 * `ln -s ~/download/jdk1.8.0_161/bin/javac javac`
 ### 하지만 시스템 레벨에선 JDK를 같이 사용할 수도..
-* 위와 같은 설정으로는 `/home/[user]/bin`에 접근이 불가능한 사용자가 있을 수 있다
+* 위와 같은 설정으로는 `/home/(user)/bin`에 접근이 불가능한 사용자가 있을 수 있다
+
+## 사용자 관리
+|명령어|설명|
+|:-|:-|
+|useradd|사용자 추가|
+|usermod|사용자 변경|
+|userdel|사용자 삭제|
+|alt + F1~F6|터미널 전환|
+* 사용자 추가를 했을 경우엔 패스워드와 홈 디렉토리 지정을 해주어야 한다.
+  * `sudo useradd (user)`
+  * `sudo passwd (user)`
+  * `sudo mkdir /home/(user)`
+* 사용자 정보를 확인하는 명령어
+  * `cat /etc/passwd`
+  * `(Username):(Password):(UID):(GID):(User ID Info):(Home directory):(Command/Shell)`
+* 사용자가 포함된 그룹을 확인하는 명령어
+  * `groups (user)`
