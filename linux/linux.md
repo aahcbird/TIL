@@ -75,6 +75,7 @@ root@:~#
 * `ls -l` 명령어로 디렉토리 내 파일 목록 나열 시 맨 앞에 있는 정보
   * ex) `drwxrwxr-x`
   * 맨 앞 d는 해당 파일이  directory임을 나타냄. (혹은 파일명이 파란색인 것을 보고 확인 가능)
+  * 마찬가지로 맨 앞이 l이면 링크 파일.
 * `ls`명령어로 비슷한 파일 검색
   * `ls Hello[12].java` = `Hello1.java`와 `Hello2.java`만 검색 됨.
 * 쉘에서의 위치
@@ -183,3 +184,20 @@ root@:~#
 * 압축 풀기
   * `tar -xvf name.tar`
   * `tar -zxvf name.tar.gz`
+
+## 링크 파일 만들기
+* 명령어
+  * `ln [OPTION]... TARGET [...] [LINKNAME [...]]`
+  * `-s` 옵션을 통해 Symbolic link를 생성
+    * Symbolic Link란 Windows의 바로가기 같은 것
+    * `cp -s TARGET LINKNAME` 명령어를 통해서도 생성 가능. 
+  * `-s` 옵션이 없으면 Hard link가 생성 됨.
+    * Hard Link는 참조하는 파일과 파일 생성일, 크기까지 동일. 파일명만 다르다.
+
+## 리눅스 환경 변수 설정법
+* 리눅스의 환경 변수 설정은 `$PATH` 경로 안에 링크 파일을 생성하여 실제 사용하고자 하는 경로를 참조하도록 하는 방식으로 설정이 가능하다.
+* `$PATH`의 경로 중 하나인 `/home/[user]/bin` 디렉토리에서 다음과 같은 명령어를 통해 링크파일을 생성한다.
+* `ln -s ~/download/jdk1.8.0_161/bin/java java`
+* `ln -s ~/download/jdk1.8.0_161/bin/javac javac`
+### 하지만 시스템 레벨에선 JDK를 같이 사용할 수도..
+* 위와 같은 설정으로는 `/home/[user]/bin`에 접근이 불가능한 사용자가 있을 수 있다
