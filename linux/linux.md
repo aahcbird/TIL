@@ -223,3 +223,28 @@ root@:~#
   * `(Username):(Password):(UID):(GID):(User ID Info):(Home directory):(Command/Shell)`
 * 사용자가 포함된 그룹을 확인하는 명령어
   * `groups (user)`
+
+* 사용자 변경
+  * `sudo chown (user):(group) (file)`
+
+## 스크립트 파일 생성
+```vim
+useradd testuser
+tail -n2 /etc/passwd
+mkdir /home/testuser
+chown testuser:testuser /home/testuser
+echo "testuser user added"
+```
+* 파일을 생성하고 실행하기 위해선 파일 권한을 변경해줘야 한다.
+* 파일 권한 변경
+  * `chmod [OPTION]... MODE[,MODE]... FILE...`
+  * `OPTION` = `[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+`
+  * 예시
+    * `chmod 644 test.txt`
+    * `chmod go+r test.txt`
+
+### 그럼 이제 adduser 명령어를 실행가능할까?
+* 리눅스는 실행파일에 대해서는 resolving 과정을 거침.
+* 셸 자체에서 사용하는 명령어인지 확인한 후, 아니라면 PATH를 확인해서 실행한다.
+* 따라서 adduser 명령어를 실행하기 위해선 `./adduser`로 실행해야 함.
+* `whereis adduser` 명령어로 리눅스가 가지고 있는 특별한 `adduser`들의 위치 확인 가능
