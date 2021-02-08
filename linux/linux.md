@@ -214,6 +214,7 @@ root@:~#
 |usermod|사용자 변경|
 |userdel|사용자 삭제|
 |alt + F1~F6|터미널 전환|
+|id|현재 사용자 정보 출력|
 * 사용자 추가를 했을 경우엔 패스워드와 홈 디렉토리 지정을 해주어야 한다.
   * `sudo useradd (user)`
   * `sudo passwd (user)`
@@ -242,9 +243,73 @@ echo "testuser user added"
   * 예시
     * `chmod 644 test.txt`
     * `chmod go+r test.txt`
+* 스크립트 파일에 파라미터 사용하는 법
+  * `$n`와 같이 지정하여 사용(n번째 파라미터)
 
 ### 그럼 이제 adduser 명령어를 실행가능할까?
 * 리눅스는 실행파일에 대해서는 resolving 과정을 거침.
 * 셸 자체에서 사용하는 명령어인지 확인한 후, 아니라면 PATH를 확인해서 실행한다.
 * 따라서 adduser 명령어를 실행하기 위해선 `./adduser`로 실행해야 함.
 * `whereis adduser` 명령어로 리눅스가 가지고 있는 특별한 `adduser`들의 위치 확인 가능
+* `./adduser`와 같이 실행하기 어려우므로 `$PATH`에 실행파일을 위치시켜야 함.
+* `$PATH`의 목록 중 가장 앞에 있는 것부터 차례로 우선순위를 가진다.
+* `which adduser` : 실행될 수 있는 동명의 여러 명령어들이 있다면 어떤 것이 실행되는가?
+  * `sudo which adduser` 는 결과가 다를수도..
+  * root의 권한의 `$PATH`는 사용자의 것과 다를 수 있기 때문
+
+### 향상된 사용자 추가
+* `useradd`보다는 `adduser`가 더 많이 쓰임.
+* 마찬가지로 `deluser`도 가능.
+* `moduser`는 없고 `usermod`를 사용해야 함.
+
+## 프롬프트 스트링
+* `soon@server:~$`와 같이 프롬프트에 나오는 문자열을 의미
+* 출력하기
+  * `echo $PS1`
+* 변경하기
+  * `PS1="soon : ";`
+  * 변경은 일시적이며, 영구적으로 변경하기 위해선 프로필을 저장해야 함.
+
+### 프롬프트 스트링의 이스케이프 문자
+|문자|설명|
+|:-|:-|
+|\\H|hostname|
+|\\h|hostname up to the first '.'|
+|\\d|date|
+|\\n|newline|
+|\\r|carriage return|
+|\\t|current time in 24-hour|
+|\\T|current time in 12-hour|
+* 추가적인 정보는 'Bash Prompt Escape Sequences'로 검색
+
+## 출력 색상 변경
+* 명령어 예시
+  * `LS_COLORS="(파일 종류)=(타입);(속성)"`
+  * `LS_COLORS="di=0;33"`
+
+|파일 종류|설명|
+|:-|:-|
+|di|directory|
+|fi|file|
+|ln|symbolic link|
+|so|socket file|
+|ex|executable file|
+
+|타입|설명|
+|:-|:-|
+|0|default color|
+|1|bold|
+|4|underlined|
+|5|flashing text|
+|7|reverse field|
+
+|색상|설명|
+|:-|:-|
+|1|red|
+|32|green|
+|33|orange|
+
+## 명령어 별칭 만들기
+* `type ls` 해보면 `ls` 명령어도 사실은 `ls --color=auto`의 별칭인 것을 알 수 있음.
+* 명령어 별칭 만들기
+  * `alias ls='ls -l'` 과 같이 사용.
