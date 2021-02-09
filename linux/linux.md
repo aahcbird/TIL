@@ -313,3 +313,30 @@ echo "testuser user added"
 * `type ls` 해보면 `ls` 명령어도 사실은 `ls --color=auto`의 별칭인 것을 알 수 있음.
 * 명령어 별칭 만들기
   * `alias ls='ls -l'` 과 같이 사용.
+
+## 리눅스 부팅 순서
+1. BIOS (Basic I/O System)
+   * 메모리, 그래픽카드 등 확인
+2. Master Boot Record (MBR)
+   * 디스크에 정의되어 있는 가장 바깥 영역
+3. LILO or GRUB
+   * 운영체제 선택
+4. Kernel
+5. init : process number 1(PID=1)
+   * -/linuxrc : load modules / initialize devices / exits
+   * -/sbin/init
+     * -/etc/inittab : run boot scripts
+       * -/etc/init.d/rcS
+         * -/etc/rcS.d/S* scripts
+         * -/etc/rc.boot/*
+6. Run Levels
+   * Windows의 안전모드와 같이 올라가는 서비스의 단계 구분되어 있음.
+   * `/etc/rc/...`에 run level에 해당하는 디렉토리가 위치
+     * 예) `/etc/rc/rc6.d/`
+     * 디렉토리 안에 있는 링크파일명의 접두사는 우선순위를 의미.
+     * run level을 바꾸기 위해 `sudo init 6` 실행 (6번은 reboot)
+
+* 종료하는 법
+  * `poweroff`, `halt`, `shutdown`, `init 0`
+* 재시작
+  * `reboot`, `shutdown`, `init 6`
