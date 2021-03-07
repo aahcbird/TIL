@@ -68,7 +68,7 @@ root@:~#
 |명령어|설명|예시|
 |:-|:-|:-|
 |pwd|현재 디렉토리 경로를 출력(Print Working Directory)| |
-|ls|디렉토리 내 파일 목록 나열|자세히 보기 옵션 : `-l`|
+|ls|디렉토리 내 파일 목록 나열|자세히 보기 옵션 : `-l`<br>숨긴 파일 보기 옵션 : `-a`|
 |cd|디렉토리를 변경| |
 |man|메뉴얼 파일 열기|`man ls`|
 
@@ -340,3 +340,31 @@ echo "testuser user added"
   * `poweroff`, `halt`, `shutdown`, `init 0`
 * 재시작
   * `reboot`, `shutdown`, `init 6`
+
+## Shell Script 실행 순서
+
+* Shell 이란?
+  * 사용자가 SW를 사용할 수 있게 도와주는 창
+
+### 로그인 할 때 실행되는 스크립트 RC(Run Commands)
+1. Bash 시작 스크립트
+2. 로그인 쉘
+   * `/bin/login` 이후 2개 실행 됨.
+     * `/etc/profile` (모든 사용자 설정)
+       * `/etc/profile.d/`
+       * `/etc/bash.bashrc`
+     * `~/.profile` (개인-overwrite)
+       * `~/.bashrc`
+3. 비로그인 쉘
+   * `/bin/bash` or `/bin/su` or `terminal`
+     * `virtual terminal run`
+     * `/etc/bash.bashrc`
+       * `~/.bashrc`
+       * `~/.bash_logout`
+4. Bash 로그아웃 스크립트
+   * `~/.bash_logout`
+
+### 프로필 수정해보기
+* 프로필이 적용되려면 새로 로그인 하거나, 프로필을 갱신해줘야 한다.
+1. `/bin/etc/profile` 끝에 `alias aa='ls -l'` 추가
+2. `/bin/etc/profile.d/`안에 `alias aa='ls -l'`을 넣은 `alias.sh`파일 추가
