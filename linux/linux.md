@@ -368,3 +368,12 @@ echo "testuser user added"
 * 프로필이 적용되려면 새로 로그인 하거나, 프로필을 갱신해줘야 한다.
 1. `/bin/etc/profile` 끝에 `alias aa='ls -l'` 추가
 2. `/bin/etc/profile.d/`안에 `alias aa='ls -l'`을 넣은 `alias.sh`파일 추가
+
+#### 그럼 프로필에 환경변수를 설정하면 되는건가?
+* pam
+  * 서비스를 인증하기 위해 사용하는 인증모듈
+* `/etc/pam.d/login`
+  * 로그인 할 때 실행 됨.
+  * pam 모듈을 사용할 때 인증하는 것들은 `/etc/environment`를 읽어들인다.
+  * 따라서 환경변수는 `/etc/environment`에 설정하는게 가장 좋음.
+    * `/etc/environment`는 위 프로필들과 다르게 script파일은 아님.
