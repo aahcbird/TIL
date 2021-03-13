@@ -170,6 +170,8 @@ root@:~#
 |less|한 페이지씩 확인하기|`ls -l | less`|
 |sort|정렬|`history | sort`<br>`-r` 옵션으로 역정렬 가능|
 |;|명령어 연속 실행|`touch test1; echo "okay~" >> test1; cat test1`|
+|ctrl+z|backgroud로 이동(nano 등)| |
+|fg 1|1번 foreground로 이동| |
 
 ## 파일 압축
 ### tar(Tape ARchive) + zip
@@ -377,3 +379,57 @@ echo "testuser user added"
   * pam 모듈을 사용할 때 인증하는 것들은 `/etc/environment`를 읽어들인다.
   * 따라서 환경변수는 `/etc/environment`에 설정하는게 가장 좋음.
     * `/etc/environment`는 위 프로필들과 다르게 script파일은 아님.
+
+## JDK 전역화 하기
+* `/usr/environment`에 JDK 경로를 입력한다.
+* 아직 환경변수를 읽지 않았기 때문에 JDK 경로 입력 후 바로 `java -version`을 타이핑하면 인식하지 않는다.
+* 이 때 환경변수를 다시 읽기 위해 source 명령어를 사용한다.
+  * `source /etc/environment` 후에 `echo $PATH`를 타이핑하면 환경변수가 정상적으로 바뀜을 알 수 있다.
+  * 이 방법을 통해 다른 user도 JDK를 사용할 수 있게 된다.
+
+## Debian 패키지로 tree 유틸리티 설치하기
+* tree : 디렉토리를 현재 디렉토리 뿐만 아니라 tree 형식으로 나타내게 도와주는 유틸리티.
+* `wget http://kr.archive.ubuntu.com/ubuntu/pool/universe/t/tree/tree_1.8.0-1_amd64.deb`
+* 다운로드 후 `dpkg -i` 명령어를 통해 설치해준다. (debian package)
+
+* dpkg 옵션
+
+|옵션|설명|
+|:-|:-|
+|-i|패키지 설치|
+|-l|설치된 패키지들의 리스트 출력|
+|-L|설치된 패키지의 위치 출력|
+|-r|패키지 삭제(실행 파일만)|
+|-R|패키지 삭제(설정 파일까지)|
+
+* 하지만 Debian 패키지를 직접 다운로드하는 것보다 더 좋은 설치 방법이 있다!
+
+## APT를 이용해 소프트웨어 설치하기
+* APT(Advanced Packaging Tool) : 향상된 패키지 관리 도구
+  * `.deb` 파일들이 저장되어있는 우분투 패키지 저장소의 목록을 볼 수 있도록 해준다.
+* `/etc/apt/sources.list` : 저장소의 목록
+  * 만약 저장소를 추가하고 싶다면 목록에 추가 후 `apt-get update`
+  * 의존성 검사를 통한 목록 갱신 : `apt-get dist-update`
+  * 목록을 업데이트 하게되면 설치할 수 있는 패키지 정보들을 cache화 한다.
+  * `apt-cache search X` : cache화된 패키지를 찾는다.
+  * `apt-cache show X` : cache화된 패키지의 정보를 보여준다.
+* `apt-get remove` : 다운로드 받은 패키지의 실행파일만 삭제
+* `apt-get purge` : 다운로드 받은 패키지의 실행파일과 설정파일 삭제
+
+### JDK 찾아서 설치
+* `apt-cache pkgnames | grep jdk` : description 없이 패키지 목록만 표기
+* `sudo apt-get install openjdk-11-jdk`
+
+## PPA를 이용해 소프트웨어 설치하기
+* PPA(Personal Package Archive) : 개인화된 패키지 저장소
+* Canonical이 제공하지 않는 패키지를 Launchpad의 PPA 등을 통해 다운받을 수 있음.
+* ex) PPA for OpenJDK 검색 -> `ppa:openjdk-r/ppa`
+* ex) ubuntu PPA oracle Java 8 -> `ppa:webupd8team/java`
+* `add-apt-repository ppa:openjdk-r/ppa` `apt-get update`
+* `apt-cache pkgnames | grep oracle | grep java`
+
+## 여러 개의 JDK를 다운받았을 때 버전 변경하는 법
+* `update-java-alternatives`
+  * `-l` : JDK 리스트 나열
+  * `-s` : 해당 JDK로 변경
+
