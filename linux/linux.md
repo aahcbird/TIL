@@ -56,7 +56,7 @@ root@:~#
 |mnt||Drive(C:\\, D:\\)|
 |bin| |System32|
 |home| |Documents, Pictures, Downloads, ...|
-|usr||Program Files|
+|usr| |Program Files|
 |etc|프로그램이 실행되기 전 생성되는 파일들|registry|
 |var|프로그램 실행 중 생성되는 파일들| |
 |bin|모든 유저가 사용하게 될 실행 파일들| |
@@ -206,8 +206,10 @@ root@:~#
 * `$PATH`의 경로 중 하나인 `/home/(user)/bin` 디렉토리에서 다음과 같은 명령어를 통해 링크파일을 생성한다.
 * `ln -s ~/download/jdk1.8.0_161/bin/java java`
 * `ln -s ~/download/jdk1.8.0_161/bin/javac javac`
+
 ### 하지만 시스템 레벨에선 JDK를 같이 사용할 수도..
 * 위와 같은 설정으로는 `/home/(user)/bin`에 접근이 불가능한 사용자가 있을 수 있다
+* 이 때 `$PATH`의 경로 중 하나인 `/usr/bin`을 사용할 수도 있다.
 
 ## 사용자 관리
 |명령어|설명|
@@ -433,3 +435,15 @@ echo "testuser user added"
   * `-l` : JDK 리스트 나열
   * `-s` : 해당 JDK로 변경
 
+* 어떻게 이게 가능한걸까?
+  * 내부적으로는 링크 파일을 이용한 프로그램 실행
+  * 링크 관리 도구 `update-alternatives` 이용하여 설정 변경 가능
+    * ex) `sudo update-alternatives --config editor`
+  * 반복적인 링크로 연결되어 있다.
+    * `whereis editor`
+    * `ls -l /usr/bin/editor`
+      * `/usr/bin/editor -> /etc/alternatives/editor`
+    * `ls -l /etc/alternatives/editor`
+      * `/etc/alternatives/editor -> /bin/nano`
+  * 비슷한 기능을 직접 추가도 가능하다.
+    * `sudo update-alternatives --install ~/bin/bb bb ~/test1.sh 1`
