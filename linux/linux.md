@@ -447,3 +447,22 @@ echo "testuser user added"
       * `/etc/alternatives/editor -> /bin/nano`
   * 비슷한 기능을 직접 추가도 가능하다.
     * `sudo update-alternatives --install ~/bin/bb bb ~/test1.sh 1`
+
+## Telnet 서비스란?
+* 보통 Tomcat이나 MySQL 등을 원격 컴퓨터에 설치하고 그것을 관리할 목적으로 리눅스를 사용하는데, 원격으로 터미널에 접속할 수 있게 도와주는 서비스.
+* 비슷하게 SSH, FTP가 있음.
+
+### Telnet 설치
+* `dpkg -s telnetd`
+  * `-s`옵션을 통해 설치 여부를 체크할 수 있음.
+  * telnet 뒤에 붙는 d는 서비스를 의미.
+  * `sudo apt install telnetd`
+
+### 윈도우에서 Telnet으로 가상머신에 접속해보기
+* Linux에서 `ifconfig` 명령어를 사용하면 ip주소 확인가능
+* `telnet 10.0.2.15` 명령어를 통해 접속해보자.
+  * 이건 가상 머신으로 부여 받은 private ip이기 때문에 접속 되지 않음.
+  * 23번 포트를 사용하는 telnet에 접속하기 위해선 Port Forwarding 필요
+  * 가상 머신 네트워크 설정에서 호스트 IP + 호스트 포트로 오는 요청이 있으면 게스트 IP + 게스트 포트로 포워딩해줄 수 있도록 설정
+  * 마찬가지로 공유기에 Port Forwarding을 해준다면 전세계 어디에서든 telnet으로 가상 머신안의 리눅스에 접속 가능.
+  * 하지만 보안상의 문제로 Telnet은 잘 쓰이지 않는다.
