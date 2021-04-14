@@ -19,6 +19,10 @@
 ## Linux
 * [Linux](linux/linux.md)
 
+## AWS
+* [AWS](aws/aws.md)
+* [EC2](aws/ec2.md)
+
 ## Codeforces
 * [1600-2100](codeforces/1600-2100.md)
 
