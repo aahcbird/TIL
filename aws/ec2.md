@@ -23,7 +23,22 @@
      * Stop 설정 시 Shutdown 하면 Storage에 해당하는 비용만 발생.
    * Enable termination protection : 실수로 인스턴스를 삭제하는 행위를 방지.
    * Monitoring : CPU, Memory에 대한 모니터링을 디테일하게 적용(추가 요금)
-4. 
+4. Add Storage
+   * Volume Type
+     * Provisioned IOPS : 직접 저장장치의 성능을 설정
+   * Delete on Termination : default로는 Instance와 Storage는 라이프사이클이 다름.
+5. Tag Instance
+6. Configure Security Group
+   * 제한된 설정으로만 인스턴스에 접속할 수 있도록 만들도록 하기 위한 그룹.
+   * Type
+     * SSH(22) : Linux / Unix 운영체제에서 원격 제어를 할 때 사용하는 프로토콜.
+     * HTTP(80) : 인스턴스를 웹 서버로 사용하고자 할 경우.
+     * RDP(3389) : Windows 인스턴스 일 경우에 지정됨.
+       * Windows는 독자적인 원격 제어의 방식을 사용한다.
+7. Review Instance Launch
+   * Key pair
+     * 인스턴스에 접근할 때 사용하는 일종의 비밀번호
+     * public key, private key를 파일의 형태로 저장.
 
 ## 가격 정책
 * On-demand
@@ -32,3 +47,31 @@
   * 기본적으로는 On-demand 방식이나 한 번에 긴 기간을 계약하는 사용자에게 할인을 해주는 정책
 * 스팟 인스턴스
   * AWS가 인스턴스 할당을 하면서 어쩔 수 없이 노는 컴퓨터가 발생하게 되는데, 노는 인스턴스의 수가 많아지면 가격이 내려가고, 그렇지 않으면 가격이 올라가는 방식의 가격 정책.
+
+## 인스턴스 접속
+### OSX에서 리눅스 인스턴스로 접속
+* 원격제어를 하기 위해선 원격제어할 수 있는 프로그램(SSH Client)이 필요.
+  * 리눅스의 경우 Terminal
+* key를 `aws_password.pem`으로 변경 후 터미널을 실행할 위치로 이동.
+* key의 권한은 읽기만 허용, 다른 모든 사람은 권한 없음.
+* `ssh -i "aws_password.pem" ubuntu@{대상ip주소}`
+  * `ubuntu`는 우분투 인스턴스가 생성될 때 자동으로 만들어지는 아이디
+  * 우분투 인스턴스가 아니라면 `ec2-user`
+* 접속을 끊고 싶을 때는 `exit`
+
+### Windows에서 리눅스 인스턴스로 접속
+* Windows에선 SSH 사용 위해 별도 프로그램 설치 필요(Xshell, PuTTY 등)
+* Xshell의 경우 새로운 세션을 등록해야 함.
+  * 호스트 : 대상 ip 주소
+  * 사용자 인증
+    * Public Key 방식으로 변경
+    * 사용자 이름
+    * 사용자 키
+    * 암호 : 공백으로 둔다.
+
+## 리눅스에서 웹서버 사용
+* 인스턴스의 Security Group을 확인해보면 `80` Port가 열려있기 때문에 인스턴스가 서버로서의 기능 수행 가능.
+* `sudo apt-get install apache2`
+  * 설치된 이후 바로 apache가 실행된다.
+* Instance의 Description 탭에서 Public DNS에 있는 도메인 이름을 주소창에 입력하여 인스턴스에 접속 가능
+  * 페이지 중간 부분 Document Roots에 서버를 위한 파일들의 위치 정보가 나와있다.
