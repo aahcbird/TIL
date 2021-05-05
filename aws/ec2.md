@@ -97,3 +97,18 @@
 * Server Manager -> Manage -> Add Roles and Features
   * Server Roles 에서 IIS에 체크
 * IIS 실행 후 WIN-xx... -> Sites -> Default Web Site -> Explore 를 통해 서버 root 폴더에 접근 가능
+
+## AMIs (Amazon Machine Image)
+* 컴퓨터의 상태를 얼려서 보관해놓은 것이라고 생각해도 됨.
+* Instance -> Create Image를 통해 저장장치에 Image를 저장할 수 있음.
+  * Image를 생성하게 되는 동안 인스턴스는 잠깐 멈춤.
+* Image -> Launch를 통해 Image로 인스턴스를 생성할 수도 있음.
+* 백업 등의 용도로 사용 가능.
+
+## AWS Marketplace
+* 다른 사람이 만들어놓은 AMI를 통해 인스턴스를 생성할 수도 있음.
+* AWS Marketplace 검색해서 찾고자 하는 AMI 선택
+  * ex) WordPress powered by Bitnami (HVM)
+* 다른 사람이 만든 AMI를 사용할 경우 Image 제작자에게 값을 지불해야하는 경우도 있음.
+* 인스턴스 생성이 되면, 메일 등에서 AMI Usage Instruction 링크에 접속할 수 있음.
+  * Instance, Application, Database 등에 사용되는 username, password를 찾는 방법에 대한 설명이 있음.
