@@ -49,7 +49,10 @@
   * AWS가 인스턴스 할당을 하면서 어쩔 수 없이 노는 컴퓨터가 발생하게 되는데, 노는 인스턴스의 수가 많아지면 가격이 내려가고, 그렇지 않으면 가격이 올라가는 방식의 가격 정책.
 
 ## 인스턴스 접속
-### OSX에서 리눅스 인스턴스로 접속
+
+### Linux
+
+#### OSX에서 리눅스 인스턴스로 접속
 * 원격제어를 하기 위해선 원격제어할 수 있는 프로그램(SSH Client)이 필요.
   * 리눅스의 경우 Terminal
 * key를 `aws_password.pem`으로 변경 후 터미널을 실행할 위치로 이동.
@@ -59,7 +62,7 @@
   * 우분투 인스턴스가 아니라면 `ec2-user`
 * 접속을 끊고 싶을 때는 `exit`
 
-### Windows에서 리눅스 인스턴스로 접속
+#### Windows에서 리눅스 인스턴스로 접속
 * Windows에선 SSH 사용 위해 별도 프로그램 설치 필요(Xshell, PuTTY 등)
 * Xshell의 경우 새로운 세션을 등록해야 함.
   * 호스트 : 대상 ip 주소
@@ -69,9 +72,28 @@
     * 사용자 키
     * 암호 : 공백으로 둔다.
 
-## 리눅스에서 웹서버 사용
+#### 리눅스에서 웹서버 사용
 * 인스턴스의 Security Group을 확인해보면 `80` Port가 열려있기 때문에 인스턴스가 서버로서의 기능 수행 가능.
 * `sudo apt-get install apache2`
   * 설치된 이후 바로 apache가 실행된다.
 * Instance의 Description 탭에서 Public DNS에 있는 도메인 이름을 주소창에 입력하여 인스턴스에 접속 가능
   * 페이지 중간 부분 Document Roots에 서버를 위한 파일들의 위치 정보가 나와있다.
+
+### Windows
+
+#### OSX에서 Windows 인스턴스로 접속
+* Windows server란 Window를 서버 특화로 사용할 수 있게 만든 서버
+* 윈도우 인스턴스에 접속하고자 할 때 Key pair를 입력하면 RDP를 사용하기 위한 Public IP, User name, Password를 발급해줌.
+* OSX에서 Windows 인스턴스를 사용하려면 Microsoft에서 만든 MAC용 원격 제어 프로그램을 사용할 수 있음.
+  * 앱스토어에서 Microsoft Remote Desktop 다운로드
+  * New -> Edit remote desktop에서 PC name에는 IP 주소를 입력
+
+#### Windows에서 Windows 인스턴스로 접속
+* Remote Desktop File을 다운로드해 접속할 수도 있음.
+
+#### Windows에서 웹서버 사용
+* 윈도우 서버는 기본적으로 웹서버가 내장되어 있음.
+  * IIS (Internet Information Services)
+* Server Manager -> Manage -> Add Roles and Features
+  * Server Roles 에서 IIS에 체크
+* IIS 실행 후 WIN-xx... -> Sites -> Default Web Site -> Explore 를 통해 서버 root 폴더에 접근 가능
